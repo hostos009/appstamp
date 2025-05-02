@@ -1,0 +1,17 @@
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\bin\Debug\net8.0-windows\collectionofstamp.exe
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\bin\Debug\net8.0-windows\collectionofstamp.deps.json
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\bin\Debug\net8.0-windows\collectionofstamp.runtimeconfig.json
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\bin\Debug\net8.0-windows\collectionofstamp.dll
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\bin\Debug\net8.0-windows\collectionofstamp.pdb
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.MainForm.resources
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.csproj.GenerateResource.cache
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.AssemblyInfoInputs.cache
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.AssemblyInfo.cs
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.csproj.CoreCompileInputs.cache
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.sourcelink.json
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.dll
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\refint\collectionofstamp.dll
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.pdb
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\collectionofstamp.genruntimeconfig.cache
+C:\Users\forto\OneDrive\Рабочий стол\reposet\collectionofstamp\collectionofstamp\obj\Debug\net8.0-windows\ref\collectionofstamp.dll
