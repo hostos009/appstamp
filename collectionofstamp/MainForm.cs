@@ -20,13 +20,15 @@ namespace collectionofstamp
         {
             try
             {
-                string stampsJson = File.ReadAllText("stamps.json");
+                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+                string stampsJson = File.ReadAllText("stamps.json", System.Text.Encoding.UTF8);
                 stamps = JsonSerializer.Deserialize<List<Stamp>>(stampsJson);
 
-                string collectorsJson = File.ReadAllText("collectors.json");
+                string collectorsJson = File.ReadAllText("collectors.json", System.Text.Encoding.UTF8);
                 collectors = JsonSerializer.Deserialize<List<Collector>>(collectorsJson);
 
-                string myCollectionJson = File.ReadAllText("mycollection.json");
+                string myCollectionJson = File.ReadAllText("mycollection.json", System.Text.Encoding.UTF8);
                 myCollection = JsonSerializer.Deserialize<List<Stamp>>(myCollectionJson);
             }
             catch (Exception ex)
@@ -51,7 +53,6 @@ namespace collectionofstamp
 
         private void DisplayData()
         {
-            // Відображення всіх даних
             DisplayAllStamps();
             DisplayAllCollectors();
             DisplayAllMyCollection();
@@ -62,7 +63,8 @@ namespace collectionofstamp
             listBoxStamps.Items.Clear();
             foreach (var stamp in stamps)
             {
-                listBoxStamps.Items.Add($"{stamp.Country} - {stamp.Price} ({stamp.Year})");
+                listBoxStamps.Items.Add($"{stamp.Naming}   {stamp.Country}   {stamp.Price}   " +
+                    $"{stamp.Year}   {stamp.Circulation}   {stamp.Features}");
             }
         }
 
@@ -71,7 +73,8 @@ namespace collectionofstamp
             listBoxCollectors.Items.Clear();
             foreach (var collector in collectors)
             {
-                listBoxCollectors.Items.Add($"{collector.Name} - {collector.Country}");
+                listBoxCollectors.Items.Add($"{collector.Name}   {collector.Country}   " +
+                    $"{collector.ContactData}   {collector.RareStamps}");
             }
         }
 
@@ -80,7 +83,8 @@ namespace collectionofstamp
             listBoxMy.Items.Clear();
             foreach (var stamp in myCollection)
             {
-                listBoxMy.Items.Add($"{stamp.Country} - {stamp.Price} ({stamp.Year})");
+                listBoxMy.Items.Add($"{stamp.Naming}   {stamp.Country}   {stamp.Price}   " +
+                    $"{stamp.Year}   {stamp.Circulation}   {stamp.Features}");
             }
         }
 
@@ -88,6 +92,7 @@ namespace collectionofstamp
         {
             var stamp = new Stamp
             {
+                Naming = txtBoxNaming.Text,
                 Country = txtBoxCountry.Text,
                 Price = txtBoxPrice.Text,
                 Year = int.Parse(txtBoxYear.Text),
@@ -126,9 +131,19 @@ namespace collectionofstamp
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            string searchTerm = txtBoxCountry.Text.Trim().ToLower();
+            string searchNaming = txtBoxNaming.Text.Trim().ToLower();
+            string searchCountry = txtBoxCountry.Text.Trim().ToLower();
+            string searchPrice = txtBoxPrice.Text.Trim().ToLower();
+            string searchFeatures = txtBoxFeatures.Text.Trim().ToLower();
+           
+            bool searchYear = int.TryParse(txtBoxYear.Text.Trim(), out int yearSearch);
+            bool searchCirculation = int.TryParse(txtBoxCirculation.Text.Trim(), out int circulationSearch);
 
-            if (string.IsNullOrEmpty(searchTerm))
+            if (string.IsNullOrEmpty(searchNaming) &&
+                string.IsNullOrEmpty(searchCountry) &&
+                string.IsNullOrEmpty(searchPrice) &&
+                string.IsNullOrEmpty(searchFeatures) &&
+                !searchYear && !searchCirculation)
             {
                 DisplayAllStamps();
                 return;
@@ -137,18 +152,43 @@ namespace collectionofstamp
             listBoxStamps.Items.Clear();
             foreach (var stamp in stamps)
             {
-                if (stamp.Country.ToLower().Contains(searchTerm))
+                bool byName = string.IsNullOrEmpty(searchNaming) ||
+                    stamp.Naming.ToLower().Contains(searchNaming);
+
+                bool byCountry = string.IsNullOrEmpty(searchCountry) ||
+                    stamp.Country.ToLower().Contains(searchCountry);
+                
+                bool byPrice = string.IsNullOrEmpty(searchPrice) ||
+                    stamp.Price.ToLower().Contains(searchPrice);
+                
+                bool byFeatures = string.IsNullOrEmpty(searchFeatures) ||
+                    stamp.Features.ToLower().Contains(searchFeatures);
+
+                bool byYear = !searchYear || stamp.Year == yearSearch;
+
+                bool byCirculation = !searchCirculation || stamp.Circulation == circulationSearch;
+
+                if (byName && byCountry && byPrice &&
+                    byFeatures && byYear && byCirculation)
                 {
-                    listBoxStamps.Items.Add($"{stamp.Country} - {stamp.Price} ({stamp.Year})");
+                    listBoxStamps.Items.Add($"{stamp.Naming}   " +
+                        $"{stamp.Country}   {stamp.Price}   " +
+                    $"{stamp.Year}   {stamp.Circulation}   {stamp.Features}");
                 }
             }
         }
 
         private void buttonSearchCollectors_Click(object sender, EventArgs e)
         {
-            string searchTerm = txtBoxNameCollectors.Text.Trim().ToLower();
+            string searchCountry = txtBoxCountryCollectors.Text.Trim().ToLower();
+            string searchName = txtBoxNameCollectors.Text.Trim().ToLower();
+            string searchContactData = txtBoxContactCollectors.Text.Trim().ToLower();
+            string searchRareStamp = txtBoxRareCollectors.Text.Trim().ToLower();
 
-            if (string.IsNullOrEmpty(searchTerm))
+            if (string.IsNullOrEmpty(searchCountry) &&
+                string.IsNullOrEmpty(searchName) &&
+                string.IsNullOrEmpty(searchContactData) &&
+                string.IsNullOrEmpty(searchRareStamp))
             {
                 DisplayAllCollectors();
                 return;
@@ -157,9 +197,23 @@ namespace collectionofstamp
             listBoxCollectors.Items.Clear();
             foreach (var collector in collectors)
             {
-                if (collector.Name.ToLower().Contains(searchTerm))
+                bool byName = string.IsNullOrEmpty(searchName) ||
+                    collector.Name.ToLower().Contains(searchName);
+
+                bool byCountry = string.IsNullOrEmpty(searchCountry) ||
+                    collector.Country.ToLower().Contains(searchCountry);
+
+                bool byContactData = string.IsNullOrEmpty(searchContactData) ||
+                    collector.ContactData.ToLower().Contains(searchContactData);
+
+                bool byRareStamps = string.IsNullOrEmpty(searchRareStamp) ||
+                    collector.RareStamps.ToLower().Contains(searchRareStamp);
+                
+                if (byName && byCountry && 
+                    byContactData && byRareStamps)
                 {
-                    listBoxCollectors.Items.Add($"{collector.Name} - {collector.Country}");
+                    listBoxCollectors.Items.Add($"{collector.Name}   {collector.Country}   " +
+                    $"{collector.ContactData}   {collector.RareStamps}");
                 }
             }
         }
