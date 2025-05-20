@@ -550,7 +550,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(782, 447);
             Controls.Add(tabControl1);
+            MinimumSize = new Size(800, 490);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Stamp Collection";
             tabControl1.ResumeLayout(false);
             tabStamps.ResumeLayout(false);
