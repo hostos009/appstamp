@@ -220,9 +220,19 @@ namespace collectionofstamp
 
         private void buttonSearchMy_Click(object sender, EventArgs e)
         {
-            string searchTerm = txtBoxCountryMy.Text.Trim().ToLower();
+            string searchNaming = txtBoxNamingMy.Text.Trim().ToLower();
+            string searchCountry = txtBoxCountryMy.Text.Trim().ToLower();
+            string searchPrice = txtBoxPriceMy.Text.Trim().ToLower();
+            string searchFeatures = txtBoxFeaturesMy.Text.Trim().ToLower();
 
-            if (string.IsNullOrEmpty(searchTerm))
+            bool searchYear = int.TryParse(txtBoxYearMy.Text.Trim(), out int yearSearch);
+            bool searchCirculation = int.TryParse(txtBoxCirculationMy.Text.Trim(), out int circulationSearch);
+
+            if (string.IsNullOrEmpty(searchNaming) &&
+                string.IsNullOrEmpty(searchCountry) &&
+                string.IsNullOrEmpty(searchPrice) &&
+                string.IsNullOrEmpty(searchFeatures) &&
+                !searchYear && !searchCirculation)
             {
                 DisplayAllMyCollection();
                 return;
@@ -231,11 +241,58 @@ namespace collectionofstamp
             listBoxMy.Items.Clear();
             foreach (var stamp in myCollection)
             {
-                if (stamp.Country.ToLower().Contains(searchTerm))
+                bool byName = string.IsNullOrEmpty(searchNaming) ||
+                    stamp.Naming.ToLower().Contains(searchNaming);
+
+                bool byCountry = string.IsNullOrEmpty(searchCountry) ||
+                    stamp.Country.ToLower().Contains(searchCountry);
+
+                bool byPrice = string.IsNullOrEmpty(searchPrice) ||
+                    stamp.Price.ToLower().Contains(searchPrice);
+
+                bool byFeatures = string.IsNullOrEmpty(searchFeatures) ||
+                    stamp.Features.ToLower().Contains(searchFeatures);
+
+                bool byYear = !searchYear || stamp.Year == yearSearch;
+
+                bool byCirculation = !searchCirculation || stamp.Circulation == circulationSearch;
+
+                if (byName && byCountry && byPrice &&
+                    byFeatures && byYear && byCirculation)
                 {
-                    listBoxMy.Items.Add($"{stamp.Country} - {stamp.Price} ({stamp.Year})");
+                    listBoxMy.Items.Add($"{stamp.Naming}   " +
+                        $"{stamp.Country}   {stamp.Price}   " +
+                    $"{stamp.Year}   {stamp.Circulation}   {stamp.Features}");
                 }
             }
+        }
+
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+            if(listBoxMy.SelectedIndex >= 0)
+            {
+                myCollection.RemoveAt(listBoxMy.SelectedIndex);
+                SaveData();
+                ClearMyCollectionTextBoxes();
+                DisplayAllMyCollection();
+                MessageBox.Show("Марку успішно видалено з колекції",
+                    "Інформація", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, оберіть марку для видалення",
+                    "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ClearMyCollectionTextBoxes()
+        {
+            txtBoxCountryMy.Clear();
+            txtBoxPriceMy.Clear();
+            txtBoxYearMy.Clear();
+            txtBoxCirculationMy.Clear();
+            txtBoxFeaturesMy.Clear();
         }
 
         private void listBoxStamps_SelectedIndexChanged(object sender, EventArgs e)
@@ -268,6 +325,7 @@ namespace collectionofstamp
             if (listBoxMy.SelectedIndex >= 0)
             {
                 var stamp = myCollection[listBoxMy.SelectedIndex];
+                txtBoxNamingMy.Text = stamp.Naming;
                 txtBoxCountryMy.Text = stamp.Country;
                 txtBoxPriceMy.Text = stamp.Price.ToString();
                 txtBoxYearMy.Text = stamp.Year.ToString();

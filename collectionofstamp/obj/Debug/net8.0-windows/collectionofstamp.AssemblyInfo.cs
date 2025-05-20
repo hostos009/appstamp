@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("collectionofstamp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ce06e106f4fdf813e933f6dacf608e280cbca0f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8ae2b69accb09e2dc8e75552187f1db0d92901d")]
 [assembly: System.Reflection.AssemblyProductAttribute("collectionofstamp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("collectionofstamp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

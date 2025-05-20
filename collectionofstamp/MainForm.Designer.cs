@@ -65,6 +65,7 @@
             txtBoxYearMy = new TextBox();
             txtBoxPriceMy = new TextBox();
             txtBoxCountryMy = new TextBox();
+            buttonRemove = new Button();
             tabControl1.SuspendLayout();
             tabStamps.SuspendLayout();
             panelStamps.SuspendLayout();
@@ -83,7 +84,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 450);
+            tabControl1.Size = new Size(782, 447);
             tabControl1.TabIndex = 0;
             // 
             // tabStamps
@@ -93,7 +94,7 @@
             tabStamps.Location = new Point(4, 24);
             tabStamps.Name = "tabStamps";
             tabStamps.Padding = new Padding(3);
-            tabStamps.Size = new Size(792, 422);
+            tabStamps.Size = new Size(774, 419);
             tabStamps.TabIndex = 0;
             tabStamps.Text = "Марки";
             tabStamps.UseVisualStyleBackColor = true;
@@ -105,7 +106,7 @@
             listBoxStamps.ItemHeight = 15;
             listBoxStamps.Location = new Point(185, 3);
             listBoxStamps.Name = "listBoxStamps";
-            listBoxStamps.Size = new Size(604, 416);
+            listBoxStamps.Size = new Size(586, 413);
             listBoxStamps.TabIndex = 13;
             listBoxStamps.SelectedIndexChanged += listBoxStamps_SelectedIndexChanged;
             // 
@@ -129,7 +130,7 @@
             panelStamps.Dock = DockStyle.Left;
             panelStamps.Location = new Point(3, 3);
             panelStamps.Name = "panelStamps";
-            panelStamps.Size = new Size(182, 416);
+            panelStamps.Size = new Size(182, 413);
             panelStamps.TabIndex = 0;
             // 
             // labelNaming
@@ -265,7 +266,7 @@
             tabCollectors.Location = new Point(4, 24);
             tabCollectors.Name = "tabCollectors";
             tabCollectors.Padding = new Padding(3);
-            tabCollectors.Size = new Size(792, 422);
+            tabCollectors.Size = new Size(774, 419);
             tabCollectors.TabIndex = 1;
             tabCollectors.Text = "Колекціонери";
             tabCollectors.UseVisualStyleBackColor = true;
@@ -277,7 +278,7 @@
             listBoxCollectors.ItemHeight = 15;
             listBoxCollectors.Location = new Point(185, 3);
             listBoxCollectors.Name = "listBoxCollectors";
-            listBoxCollectors.Size = new Size(604, 416);
+            listBoxCollectors.Size = new Size(586, 413);
             listBoxCollectors.TabIndex = 14;
             listBoxCollectors.SelectedIndexChanged += listBoxCollectors_SelectedIndexChanged;
             // 
@@ -296,7 +297,7 @@
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(182, 416);
+            panel2.Size = new Size(182, 413);
             panel2.TabIndex = 1;
             // 
             // labelNameOfCollectors
@@ -389,7 +390,7 @@
             tabMyCollection.Controls.Add(panel1);
             tabMyCollection.Location = new Point(4, 24);
             tabMyCollection.Name = "tabMyCollection";
-            tabMyCollection.Size = new Size(792, 422);
+            tabMyCollection.Size = new Size(774, 419);
             tabMyCollection.TabIndex = 2;
             tabMyCollection.Text = "Моя колекція";
             tabMyCollection.UseVisualStyleBackColor = true;
@@ -401,12 +402,13 @@
             listBoxMy.ItemHeight = 15;
             listBoxMy.Location = new Point(182, 0);
             listBoxMy.Name = "listBoxMy";
-            listBoxMy.Size = new Size(610, 422);
+            listBoxMy.Size = new Size(592, 419);
             listBoxMy.TabIndex = 14;
             listBoxMy.SelectedIndexChanged += listBoxMy_SelectedIndexChanged;
             // 
             // panel1
             // 
+            panel1.Controls.Add(buttonRemove);
             panel1.Controls.Add(labelNamingMy);
             panel1.Controls.Add(txtBoxNamingMy);
             panel1.Controls.Add(labelFeaturesMy);
@@ -423,7 +425,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(182, 422);
+            panel1.Size = new Size(182, 419);
             panel1.TabIndex = 1;
             // 
             // labelNamingMy
@@ -489,7 +491,7 @@
             // 
             // buttonSearchMy
             // 
-            buttonSearchMy.Location = new Point(3, 327);
+            buttonSearchMy.Location = new Point(3, 314);
             buttonSearchMy.Name = "buttonSearchMy";
             buttonSearchMy.Size = new Size(176, 35);
             buttonSearchMy.TabIndex = 6;
@@ -532,11 +534,21 @@
             txtBoxCountryMy.Size = new Size(176, 23);
             txtBoxCountryMy.TabIndex = 0;
             // 
+            // buttonRemove
+            // 
+            buttonRemove.Location = new Point(0, 355);
+            buttonRemove.Name = "buttonRemove";
+            buttonRemove.Size = new Size(176, 35);
+            buttonRemove.TabIndex = 15;
+            buttonRemove.Text = "Видалити";
+            buttonRemove.UseVisualStyleBackColor = true;
+            buttonRemove.Click += buttonRemove_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(782, 447);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Stamp Collection";
@@ -603,5 +615,6 @@
         private TextBox txtBoxNaming;
         private Label labelNamingMy;
         private TextBox txtBoxNamingMy;
+        private Button buttonRemove;
     }
 }
