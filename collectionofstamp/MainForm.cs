@@ -16,6 +16,19 @@ namespace collectionofstamp
             DisplayData();
         }
 
+        private void CheckAndCreateFiles()
+        {
+            string[] files = { "stamps.json", "collectors.json", "mycollection.json" };
+        
+            foreach(var file in files)
+            {
+                if (!File.Exists(file))
+                {
+                    File.WriteAllText(file, "[]");
+                }
+            }
+        }
+
         private void LoadData()
         {
             try
@@ -88,44 +101,180 @@ namespace collectionofstamp
             }
         }
 
+        private bool ValidateRequiredFields(params TextBox[] textBoxes)
+        {
+            foreach (var textBox in textBoxes)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    MessageBox.Show("Будь ласка, заповніть всі поля форми.",
+                        "Перевірка даних", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBox.Focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool ValidateYear(TextBox yearTextBox)
+        {
+            if (!int.TryParse(yearTextBox.Text, out int year))
+            {
+                MessageBox.Show("Рік випуску повинен бути цілим числом.",
+                    "Помилка введення", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                yearTextBox.Focus();
+                return false;
+            }
+
+            if (year < 1840 || year > DateTime.Now.Year)
+            {
+                MessageBox.Show($"Рік випуску повинен бути між 1840 і {DateTime.Now.Year}.",
+                    "Помилка введення", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                yearTextBox.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateCirculation(TextBox circulationTextBox)
+        {
+            if (!int.TryParse(circulationTextBox.Text, out int circulation))
+            {
+                MessageBox.Show("Тираж повинен бути цілим числом.",
+                    "Помилка введення", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                circulationTextBox.Focus();
+                return false;
+            }
+
+            if (circulation <= 0)
+            {
+                MessageBox.Show("Тираж повинен бути більше 0.",
+                    "Помилка введення", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                circulationTextBox.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ClearStampFields()
+        {
+            txtBoxNaming.Clear();
+            txtBoxCountry.Clear();
+            txtBoxPrice.Clear();
+            txtBoxYear.Clear();
+            txtBoxCirculation.Clear();
+            txtBoxFeatures.Clear();
+        }
+
+        private void ClearCollectorFields()
+        {
+            txtBoxCountryCollectors.Clear();
+            txtBoxNameCollectors.Clear();
+            txtBoxContactCollectors.Clear();
+            txtBoxRareCollectors.Clear();
+        }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var stamp = new Stamp
+            if (!ValidateRequiredFields(txtBoxNaming, txtBoxCountry,
+                txtBoxPrice, txtBoxYear, txtBoxCirculation))
             {
-                Naming = txtBoxNaming.Text,
-                Country = txtBoxCountry.Text,
-                Price = txtBoxPrice.Text,
-                Year = int.Parse(txtBoxYear.Text),
-                Circulation = int.Parse(txtBoxCirculation.Text),
-                Features = txtBoxFeatures.Text
-            };
-            stamps.Add(stamp);
-            SaveData();
-            DisplayAllStamps();
+                return;
+            }
+            if (!ValidateYear(txtBoxYear) || 
+                !ValidateCirculation(txtBoxCirculation))
+            {
+                return;
+            }
+            try
+            {
+                var stamp = new Stamp
+                {
+                    Naming = txtBoxNaming.Text,
+                    Country = txtBoxCountry.Text,
+                    Price = txtBoxPrice.Text,
+                    Year = int.Parse(txtBoxYear.Text),
+                    Circulation = int.Parse(txtBoxCirculation.Text),
+                    Features = txtBoxFeatures.Text
+                };
+                stamps.Add(stamp);
+                SaveData();
+                DisplayAllStamps();
+                ClearStampFields();
+                MessageBox.Show("Марку успішно додано", "Інформація",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка додавання: {ex.Message}", "Помилка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonAddCollectors_Click(object sender, EventArgs e)
         {
-            var collector = new Collector
+            if (!ValidateRequiredFields(txtBoxCountryCollectors, 
+                txtBoxNameCollectors, txtBoxContactCollectors))
             {
-                Country = txtBoxCountryCollectors.Text,
-                Name = txtBoxNameCollectors.Text,
-                ContactData = txtBoxContactCollectors.Text,
-                RareStamps = txtBoxRareCollectors.Text
-            };
-            collectors.Add(collector);
-            SaveData();
-            DisplayAllCollectors();
+                return;
+            }
+
+            try
+            {
+                var collector = new Collector
+                {
+                    Country = txtBoxCountryCollectors.Text.Trim(),
+                    Name = txtBoxNameCollectors.Text.Trim(),
+                    ContactData = txtBoxContactCollectors.Text.Trim(),
+                    RareStamps = txtBoxRareCollectors.Text.Trim()
+                };
+                collectors.Add(collector);
+                SaveData();
+                DisplayAllCollectors();
+                ClearCollectorFields();
+                MessageBox.Show("Колекціонера успішно додано!", "Інформація",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка додавання колекціонера: {ex.Message}",
+                    "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonAddMyCollection_Click(object sender, EventArgs e)
         {
-            if (listBoxStamps.SelectedIndex >= 0)
+            if(listBoxStamps.SelectedIndex < 0)
+            {
+                MessageBox.Show("Будь ласка, виберіть марку для додавання в колекцію.",
+                    "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
             {
                 var selectedStamp = stamps[listBoxStamps.SelectedIndex];
+                bool stampExists = myCollection.Any(s =>
+                    s.Naming == selectedStamp.Naming &&
+                    s.Country == selectedStamp.Country &&
+                    s.Year == selectedStamp.Year);
+                if (stampExists)
+                {
+                    MessageBox.Show("Така марка вже є у вашій колекції.",
+                        "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 myCollection.Add(selectedStamp);
                 SaveData();
                 DisplayAllMyCollection();
+                MessageBox.Show("Марку успішно додано до колекції!",
+                    "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка додавання марки до колекції: {ex.Message}",
+                    "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -269,25 +418,38 @@ namespace collectionofstamp
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            if(listBoxMy.SelectedIndex >= 0)
+            if (listBoxMy.SelectedIndex < 0)
             {
-                myCollection.RemoveAt(listBoxMy.SelectedIndex);
-                SaveData();
-                ClearMyCollectionTextBoxes();
-                DisplayAllMyCollection();
-                MessageBox.Show("Марку успішно видалено з колекції",
-                    "Інформація", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Будь ласка, оберіть марку для видалення",
+                MessageBox.Show("Оберіть марку для видалення",
                     "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                DialogResult result = MessageBox.Show("Ви впевнені, що хочете видалити цю марку з колекції?",
+                    "Підтвердження видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    myCollection.RemoveAt(listBoxMy.SelectedIndex);
+                    SaveData();
+                    ClearMyCollectionTextBoxes();
+                    DisplayAllMyCollection();
+                    MessageBox.Show("Марку успішно видалено з колекції",
+                        "Інформація", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка під час видалення: {ex.Message}",
+                    "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ClearMyCollectionTextBoxes()
         {
+            txtBoxNamingMy.Clear();
             txtBoxCountryMy.Clear();
             txtBoxPriceMy.Clear();
             txtBoxYearMy.Clear();
@@ -300,6 +462,7 @@ namespace collectionofstamp
             if (listBoxStamps.SelectedIndex >= 0)
             {
                 var stamp = stamps[listBoxStamps.SelectedIndex];
+                txtBoxNaming.Text = stamp.Naming;
                 txtBoxCountry.Text = stamp.Country;
                 txtBoxPrice.Text = stamp.Price.ToString();
                 txtBoxYear.Text = stamp.Year.ToString();
