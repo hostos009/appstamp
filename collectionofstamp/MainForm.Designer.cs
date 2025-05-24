@@ -1,4 +1,6 @@
-﻿namespace collectionofstamp
+﻿using System.Windows.Forms;
+
+namespace collectionofstamp
 {
     partial class MainForm
     {
@@ -19,7 +21,7 @@
         {
             tabControl1 = new TabControl();
             tabStamps = new TabPage();
-            listBoxStamps = new ListBox();
+            dataGridViewStamps = new DataGridView();
             panelStamps = new Panel();
             labelNaming = new Label();
             txtBoxNaming = new TextBox();
@@ -36,8 +38,14 @@
             txtBoxYear = new TextBox();
             txtBoxPrice = new TextBox();
             txtBoxCountry = new TextBox();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             tabCollectors = new TabPage();
-            listBoxCollectors = new ListBox();
+            dataGridViewCollectors = new DataGridView();
             panel2 = new Panel();
             labelNameOfCollectors = new Label();
             labelCountryOfCollectors = new Label();
@@ -49,9 +57,14 @@
             txtBoxContactCollectors = new TextBox();
             txtBoxNameCollectors = new TextBox();
             txtBoxCountryCollectors = new TextBox();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
             tabMyCollection = new TabPage();
-            listBoxMy = new ListBox();
+            dataGridViewMy = new DataGridView();
             panel1 = new Panel();
+            buttonRemove = new Button();
             labelNamingMy = new Label();
             txtBoxNamingMy = new TextBox();
             labelFeaturesMy = new Label();
@@ -65,13 +78,23 @@
             txtBoxYearMy = new TextBox();
             txtBoxPriceMy = new TextBox();
             txtBoxCountryMy = new TextBox();
-            buttonRemove = new Button();
+            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn14 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn16 = new DataGridViewTextBoxColumn();
+            buttonEditStamp = new Button();
+            buttonEditCollectors = new Button();
             tabControl1.SuspendLayout();
             tabStamps.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewStamps).BeginInit();
             panelStamps.SuspendLayout();
             tabCollectors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCollectors).BeginInit();
             panel2.SuspendLayout();
             tabMyCollection.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewMy).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -84,34 +107,38 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(782, 447);
+            tabControl1.Size = new Size(784, 451);
             tabControl1.TabIndex = 0;
             // 
             // tabStamps
             // 
-            tabStamps.Controls.Add(listBoxStamps);
+            tabStamps.Controls.Add(dataGridViewStamps);
             tabStamps.Controls.Add(panelStamps);
             tabStamps.Location = new Point(4, 24);
             tabStamps.Name = "tabStamps";
             tabStamps.Padding = new Padding(3);
-            tabStamps.Size = new Size(774, 419);
+            tabStamps.Size = new Size(776, 423);
             tabStamps.TabIndex = 0;
             tabStamps.Text = "Марки";
             tabStamps.UseVisualStyleBackColor = true;
             // 
-            // listBoxStamps
+            // dataGridViewStamps
             // 
-            listBoxStamps.Dock = DockStyle.Fill;
-            listBoxStamps.FormattingEnabled = true;
-            listBoxStamps.ItemHeight = 15;
-            listBoxStamps.Location = new Point(185, 3);
-            listBoxStamps.Name = "listBoxStamps";
-            listBoxStamps.Size = new Size(586, 413);
-            listBoxStamps.TabIndex = 13;
-            listBoxStamps.SelectedIndexChanged += listBoxStamps_SelectedIndexChanged;
+            dataGridViewStamps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewStamps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewStamps.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6 });
+            dataGridViewStamps.Dock = DockStyle.Fill;
+            dataGridViewStamps.Location = new Point(185, 3);
+            dataGridViewStamps.MultiSelect = false;
+            dataGridViewStamps.Name = "dataGridViewStamps";
+            dataGridViewStamps.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewStamps.Size = new Size(588, 417);
+            dataGridViewStamps.TabIndex = 13;
+            dataGridViewStamps.SelectionChanged += dataGridViewStamps_SelectionChanged;
             // 
             // panelStamps
             // 
+            panelStamps.Controls.Add(buttonEditStamp);
             panelStamps.Controls.Add(labelNaming);
             panelStamps.Controls.Add(txtBoxNaming);
             panelStamps.Controls.Add(labelFeatures);
@@ -130,7 +157,7 @@
             panelStamps.Dock = DockStyle.Left;
             panelStamps.Location = new Point(3, 3);
             panelStamps.Name = "panelStamps";
-            panelStamps.Size = new Size(182, 413);
+            panelStamps.Size = new Size(182, 417);
             panelStamps.TabIndex = 0;
             // 
             // labelNaming
@@ -196,32 +223,35 @@
             // 
             // buttonAddMyCollection
             // 
-            buttonAddMyCollection.Location = new Point(3, 368);
+            buttonAddMyCollection.BackColor = Color.Gainsboro;
+            buttonAddMyCollection.Location = new Point(3, 383);
             buttonAddMyCollection.Name = "buttonAddMyCollection";
-            buttonAddMyCollection.Size = new Size(176, 35);
+            buttonAddMyCollection.Size = new Size(176, 30);
             buttonAddMyCollection.TabIndex = 7;
             buttonAddMyCollection.Text = "Додати до моєї колекції";
-            buttonAddMyCollection.UseVisualStyleBackColor = true;
+            buttonAddMyCollection.UseVisualStyleBackColor = false;
             buttonAddMyCollection.Click += buttonAddMyCollection_Click;
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(3, 327);
+            buttonSearch.BackColor = Color.Gainsboro;
+            buttonSearch.Location = new Point(3, 347);
             buttonSearch.Name = "buttonSearch";
-            buttonSearch.Size = new Size(176, 35);
+            buttonSearch.Size = new Size(176, 30);
             buttonSearch.TabIndex = 6;
             buttonSearch.Text = "Пошук";
-            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.UseVisualStyleBackColor = false;
             buttonSearch.Click += buttonSearch_Click;
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(3, 286);
+            buttonAdd.BackColor = Color.Gainsboro;
+            buttonAdd.Location = new Point(3, 311);
             buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(176, 35);
+            buttonAdd.Size = new Size(176, 30);
             buttonAdd.TabIndex = 5;
             buttonAdd.Text = "Додати";
-            buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.UseVisualStyleBackColor = false;
             buttonAdd.Click += buttonAdd_Click;
             // 
             // txtBoxFeatures
@@ -259,31 +289,65 @@
             txtBoxCountry.Size = new Size(176, 23);
             txtBoxCountry.TabIndex = 0;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Назва";
+            dataGridViewTextBoxColumn1.Name = "Name";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "Країна";
+            dataGridViewTextBoxColumn2.Name = "Country";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "Номінальна вартість";
+            dataGridViewTextBoxColumn3.Name = "Price";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Рік випуску";
+            dataGridViewTextBoxColumn4.Name = "Year";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "Тираж";
+            dataGridViewTextBoxColumn5.Name = "Circulation";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.HeaderText = "Особливості";
+            dataGridViewTextBoxColumn6.Name = "Features";
+            // 
             // tabCollectors
             // 
-            tabCollectors.Controls.Add(listBoxCollectors);
+            tabCollectors.Controls.Add(dataGridViewCollectors);
             tabCollectors.Controls.Add(panel2);
             tabCollectors.Location = new Point(4, 24);
             tabCollectors.Name = "tabCollectors";
             tabCollectors.Padding = new Padding(3);
-            tabCollectors.Size = new Size(774, 419);
+            tabCollectors.Size = new Size(776, 423);
             tabCollectors.TabIndex = 1;
             tabCollectors.Text = "Колекціонери";
             tabCollectors.UseVisualStyleBackColor = true;
             // 
-            // listBoxCollectors
+            // dataGridViewCollectors
             // 
-            listBoxCollectors.Dock = DockStyle.Fill;
-            listBoxCollectors.FormattingEnabled = true;
-            listBoxCollectors.ItemHeight = 15;
-            listBoxCollectors.Location = new Point(185, 3);
-            listBoxCollectors.Name = "listBoxCollectors";
-            listBoxCollectors.Size = new Size(586, 413);
-            listBoxCollectors.TabIndex = 14;
-            listBoxCollectors.SelectedIndexChanged += listBoxCollectors_SelectedIndexChanged;
+            dataGridViewCollectors.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCollectors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCollectors.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8, dataGridViewTextBoxColumn9, dataGridViewTextBoxColumn10 });
+            dataGridViewCollectors.Dock = DockStyle.Fill;
+            dataGridViewCollectors.Location = new Point(185, 3);
+            dataGridViewCollectors.MultiSelect = false;
+            dataGridViewCollectors.Name = "dataGridViewCollectors";
+            dataGridViewCollectors.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewCollectors.Size = new Size(588, 417);
+            dataGridViewCollectors.TabIndex = 14;
+            dataGridViewCollectors.SelectionChanged += dataGridViewCollectors_SelectionChanged;
             // 
             // panel2
             // 
+            panel2.Controls.Add(buttonEditCollectors);
             panel2.Controls.Add(labelNameOfCollectors);
             panel2.Controls.Add(labelCountryOfCollectors);
             panel2.Controls.Add(labelRareCollectors);
@@ -297,7 +361,7 @@
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(182, 413);
+            panel2.Size = new Size(182, 417);
             panel2.TabIndex = 1;
             // 
             // labelNameOfCollectors
@@ -338,22 +402,24 @@
             // 
             // buttonSearchCollectors
             // 
-            buttonSearchCollectors.Location = new Point(3, 327);
+            buttonSearchCollectors.BackColor = Color.Gainsboro;
+            buttonSearchCollectors.Location = new Point(3, 354);
             buttonSearchCollectors.Name = "buttonSearchCollectors";
             buttonSearchCollectors.Size = new Size(176, 35);
             buttonSearchCollectors.TabIndex = 6;
             buttonSearchCollectors.Text = "Пошук";
-            buttonSearchCollectors.UseVisualStyleBackColor = true;
+            buttonSearchCollectors.UseVisualStyleBackColor = false;
             buttonSearchCollectors.Click += buttonSearchCollectors_Click;
             // 
             // buttonAddCollectors
             // 
-            buttonAddCollectors.Location = new Point(3, 286);
+            buttonAddCollectors.BackColor = Color.Gainsboro;
+            buttonAddCollectors.Location = new Point(3, 313);
             buttonAddCollectors.Name = "buttonAddCollectors";
             buttonAddCollectors.Size = new Size(176, 35);
             buttonAddCollectors.TabIndex = 5;
             buttonAddCollectors.Text = "Додати";
-            buttonAddCollectors.UseVisualStyleBackColor = true;
+            buttonAddCollectors.UseVisualStyleBackColor = false;
             buttonAddCollectors.Click += buttonAddCollectors_Click;
             // 
             // txtBoxRareCollectors
@@ -384,27 +450,50 @@
             txtBoxCountryCollectors.Size = new Size(176, 23);
             txtBoxCountryCollectors.TabIndex = 0;
             // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.HeaderText = "Країна";
+            dataGridViewTextBoxColumn7.Name = "Country";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            dataGridViewTextBoxColumn8.HeaderText = "Ім'я";
+            dataGridViewTextBoxColumn8.Name = "Name";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            dataGridViewTextBoxColumn9.HeaderText = "Контактні дані";
+            dataGridViewTextBoxColumn9.Name = "Contact";
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            dataGridViewTextBoxColumn10.HeaderText = "Рідкісні марки";
+            dataGridViewTextBoxColumn10.Name = "RareStamps";
+            // 
             // tabMyCollection
             // 
-            tabMyCollection.Controls.Add(listBoxMy);
+            tabMyCollection.Controls.Add(dataGridViewMy);
             tabMyCollection.Controls.Add(panel1);
             tabMyCollection.Location = new Point(4, 24);
             tabMyCollection.Name = "tabMyCollection";
-            tabMyCollection.Size = new Size(774, 419);
+            tabMyCollection.Size = new Size(776, 423);
             tabMyCollection.TabIndex = 2;
             tabMyCollection.Text = "Моя колекція";
             tabMyCollection.UseVisualStyleBackColor = true;
             // 
-            // listBoxMy
+            // dataGridViewMy
             // 
-            listBoxMy.Dock = DockStyle.Fill;
-            listBoxMy.FormattingEnabled = true;
-            listBoxMy.ItemHeight = 15;
-            listBoxMy.Location = new Point(182, 0);
-            listBoxMy.Name = "listBoxMy";
-            listBoxMy.Size = new Size(592, 419);
-            listBoxMy.TabIndex = 14;
-            listBoxMy.SelectedIndexChanged += listBoxMy_SelectedIndexChanged;
+            dataGridViewMy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewMy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewMy.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn11, dataGridViewTextBoxColumn12, dataGridViewTextBoxColumn13, dataGridViewTextBoxColumn14, dataGridViewTextBoxColumn15, dataGridViewTextBoxColumn16 });
+            dataGridViewMy.Dock = DockStyle.Fill;
+            dataGridViewMy.Location = new Point(182, 0);
+            dataGridViewMy.MultiSelect = false;
+            dataGridViewMy.Name = "dataGridViewMy";
+            dataGridViewMy.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewMy.Size = new Size(594, 423);
+            dataGridViewMy.TabIndex = 14;
+            dataGridViewMy.SelectionChanged += dataGridViewMy_SelectionChanged;
             // 
             // panel1
             // 
@@ -425,8 +514,19 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(182, 419);
+            panel1.Size = new Size(182, 423);
             panel1.TabIndex = 1;
+            // 
+            // buttonRemove
+            // 
+            buttonRemove.BackColor = Color.Gainsboro;
+            buttonRemove.Location = new Point(3, 355);
+            buttonRemove.Name = "buttonRemove";
+            buttonRemove.Size = new Size(176, 35);
+            buttonRemove.TabIndex = 15;
+            buttonRemove.Text = "Видалити";
+            buttonRemove.UseVisualStyleBackColor = false;
+            buttonRemove.Click += buttonRemove_Click;
             // 
             // labelNamingMy
             // 
@@ -491,12 +591,13 @@
             // 
             // buttonSearchMy
             // 
+            buttonSearchMy.BackColor = Color.Gainsboro;
             buttonSearchMy.Location = new Point(3, 314);
             buttonSearchMy.Name = "buttonSearchMy";
             buttonSearchMy.Size = new Size(176, 35);
             buttonSearchMy.TabIndex = 6;
             buttonSearchMy.Text = "Пошук";
-            buttonSearchMy.UseVisualStyleBackColor = true;
+            buttonSearchMy.UseVisualStyleBackColor = false;
             buttonSearchMy.Click += buttonSearchMy_Click;
             // 
             // txtBoxFeaturesMy
@@ -534,21 +635,63 @@
             txtBoxCountryMy.Size = new Size(176, 23);
             txtBoxCountryMy.TabIndex = 0;
             // 
-            // buttonRemove
+            // dataGridViewTextBoxColumn11
             // 
-            buttonRemove.Location = new Point(0, 355);
-            buttonRemove.Name = "buttonRemove";
-            buttonRemove.Size = new Size(176, 35);
-            buttonRemove.TabIndex = 15;
-            buttonRemove.Text = "Видалити";
-            buttonRemove.UseVisualStyleBackColor = true;
-            buttonRemove.Click += buttonRemove_Click;
+            dataGridViewTextBoxColumn11.HeaderText = "Назва";
+            dataGridViewTextBoxColumn11.Name = "Name";
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            dataGridViewTextBoxColumn12.HeaderText = "Країна";
+            dataGridViewTextBoxColumn12.Name = "Country";
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            dataGridViewTextBoxColumn13.HeaderText = "Номінальна вартість";
+            dataGridViewTextBoxColumn13.Name = "Price";
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            dataGridViewTextBoxColumn14.HeaderText = "Рік випуску";
+            dataGridViewTextBoxColumn14.Name = "Year";
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            dataGridViewTextBoxColumn15.HeaderText = "Тираж";
+            dataGridViewTextBoxColumn15.Name = "Circulation";
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            dataGridViewTextBoxColumn16.HeaderText = "Особливості";
+            dataGridViewTextBoxColumn16.Name = "Features";
+            // 
+            // buttonEditStamp
+            // 
+            buttonEditStamp.BackColor = Color.Gainsboro;
+            buttonEditStamp.Location = new Point(3, 275);
+            buttonEditStamp.Name = "buttonEditStamp";
+            buttonEditStamp.Size = new Size(176, 30);
+            buttonEditStamp.TabIndex = 15;
+            buttonEditStamp.Text = "Змінити";
+            buttonEditStamp.UseVisualStyleBackColor = true;
+            buttonEditStamp.Click += buttonEditStamp_Click;
+            // 
+            // buttonEditCollectors
+            // 
+            buttonEditCollectors.BackColor = Color.Gainsboro;
+            buttonEditCollectors.Location = new Point(3, 272);
+            buttonEditCollectors.Name = "buttonEditCollectors";
+            buttonEditCollectors.Size = new Size(176, 35);
+            buttonEditCollectors.TabIndex = 14;
+            buttonEditCollectors.Text = "Змінити";
+            buttonEditCollectors.UseVisualStyleBackColor = true;
+            buttonEditCollectors.Click += buttonEditCollectors_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 447);
+            ClientSize = new Size(784, 451);
             Controls.Add(tabControl1);
             MinimumSize = new Size(800, 490);
             Name = "MainForm";
@@ -556,12 +699,15 @@
             Text = "Stamp Collection";
             tabControl1.ResumeLayout(false);
             tabStamps.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewStamps).EndInit();
             panelStamps.ResumeLayout(false);
             panelStamps.PerformLayout();
             tabCollectors.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCollectors).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             tabMyCollection.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewMy).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -610,13 +756,31 @@
         private TextBox txtBoxContactCollectors;
         private TextBox txtBoxNameCollectors;
         private TextBox txtBoxCountryCollectors;
-        private ListBox listBoxStamps;
-        private ListBox listBoxCollectors;
-        private ListBox listBoxMy;
+        private DataGridView dataGridViewStamps;
+        private DataGridView dataGridViewCollectors;
+        private DataGridView dataGridViewMy;
         private Label labelNaming;
         private TextBox txtBoxNaming;
         private Label labelNamingMy;
         private TextBox txtBoxNamingMy;
         private Button buttonRemove;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private Button buttonEditStamp;
+        private Button buttonEditCollectors;
     }
 }
