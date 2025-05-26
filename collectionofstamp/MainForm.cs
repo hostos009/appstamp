@@ -15,14 +15,13 @@ namespace collectionofstamp
             CheckAndCreateFiles();
             LoadData();
             DisplayData();
-
         }
 
         private void CheckAndCreateFiles()
         {
             string[] files = { "stamps.json", "collectors.json", "mycollection.json" };
-        
-            foreach(var file in files)
+
+            foreach (var file in files)
             {
                 if (!File.Exists(file))
                 {
@@ -82,13 +81,14 @@ namespace collectionofstamp
             foreach (var stamp in stamps)
             {
                 dataGridViewStamps.Rows.Add(
-                    stamp.Naming, 
-                    stamp.Country, 
-                    stamp.Price, 
-                    stamp.Year, 
-                    stamp.Circulation, 
+                    stamp.Naming,
+                    stamp.Country,
+                    stamp.Price,
+                    stamp.Year,
+                    stamp.Circulation,
                     stamp.Features);
             }
+            ClearStampFields();
         }
 
         private void DisplayAllCollectors()
@@ -97,11 +97,12 @@ namespace collectionofstamp
             foreach (var collector in collectors)
             {
                 dataGridViewCollectors.Rows.Add(
-                    collector.Country, 
-                    collector.Name, 
-                    collector.ContactData, 
+                    collector.Country,
+                    collector.Name,
+                    collector.ContactData,
                     collector.RareStamps);
             }
+            ClearCollectorFields();
         }
 
         private void DisplayAllMyCollection()
@@ -110,13 +111,14 @@ namespace collectionofstamp
             foreach (var stamp in myCollection)
             {
                 dataGridViewMy.Rows.Add(
-                    stamp.Naming, 
-                    stamp.Country, 
-                    stamp.Price, 
-                    stamp.Year, 
-                    stamp.Circulation, 
+                    stamp.Naming,
+                    stamp.Country,
+                    stamp.Price,
+                    stamp.Year,
+                    stamp.Circulation,
                     stamp.Features);
             }
+            ClearMyCollectionTextBoxes();
         }
 
         private bool ValidateRequiredFields(params TextBox[] textBoxes)
@@ -194,6 +196,16 @@ namespace collectionofstamp
             txtBoxRareCollectors.Clear();
         }
 
+        private void ClearMyCollectionTextBoxes()
+        {
+            txtBoxNamingMy.Clear();
+            txtBoxCountryMy.Clear();
+            txtBoxPriceMy.Clear();
+            txtBoxYearMy.Clear();
+            txtBoxCirculationMy.Clear();
+            txtBoxFeaturesMy.Clear();
+        }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (!ValidateRequiredFields(txtBoxNaming, txtBoxCountry,
@@ -245,9 +257,20 @@ namespace collectionofstamp
 
         private void buttonAddCollectors_Click(object sender, EventArgs e)
         {
-            if (!ValidateRequiredFields(txtBoxCountryCollectors, 
+            if (!ValidateRequiredFields(txtBoxCountryCollectors,
                 txtBoxNameCollectors, txtBoxContactCollectors))
             {
+                return;
+            }
+
+            string newCountry = txtBoxCountryCollectors.Text.Trim();
+            string newName = txtBoxNameCollectors.Text.Trim();
+            string newContactData = txtBoxContactCollectors.Text.Trim();
+
+            if (collectors.Any(c => c.Country == newCountry && c.Name == newName && c.ContactData == newContactData))
+            {
+                MessageBox.Show("Колекціонер з такою країною, ім'ям та контактними даними вже існує.",
+                    "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -255,9 +278,9 @@ namespace collectionofstamp
             {
                 var collector = new Collector
                 {
-                    Country = txtBoxCountryCollectors.Text.Trim(),
-                    Name = txtBoxNameCollectors.Text.Trim(),
-                    ContactData = txtBoxContactCollectors.Text.Trim(),
+                    Country = newCountry,
+                    Name = newName,
+                    ContactData = newContactData,
                     RareStamps = txtBoxRareCollectors.Text.Trim()
                 };
                 collectors.Add(collector);
@@ -276,7 +299,7 @@ namespace collectionofstamp
 
         private void buttonAddMyCollection_Click(object sender, EventArgs e)
         {
-            if(dataGridViewStamps.SelectedRows.Count == 0)
+            if (dataGridViewStamps.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Будь ласка, виберіть марку для додавання в колекцію.",
                     "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -299,6 +322,7 @@ namespace collectionofstamp
                 myCollection.Add(selectedStamp);
                 SaveData();
                 DisplayAllMyCollection();
+                ClearStampFields();
                 MessageBox.Show("Марку успішно додано до колекції!",
                     "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -315,7 +339,7 @@ namespace collectionofstamp
             string searchCountry = txtBoxCountry.Text.Trim().ToLower();
             string searchPrice = txtBoxPrice.Text.Trim().ToLower();
             string searchFeatures = txtBoxFeatures.Text.Trim().ToLower();
-           
+
             bool searchYear = int.TryParse(txtBoxYear.Text.Trim(), out int yearSearch);
             bool searchCirculation = int.TryParse(txtBoxCirculation.Text.Trim(), out int circulationSearch);
 
@@ -326,6 +350,7 @@ namespace collectionofstamp
                 !searchYear && !searchCirculation)
             {
                 DisplayAllStamps();
+                ClearStampFields();
                 return;
             }
 
@@ -337,10 +362,10 @@ namespace collectionofstamp
 
                 bool byCountry = string.IsNullOrEmpty(searchCountry) ||
                     stamp.Country.ToLower().Contains(searchCountry);
-                
+
                 bool byPrice = string.IsNullOrEmpty(searchPrice) ||
                     stamp.Price.ToLower().Contains(searchPrice);
-                
+
                 bool byFeatures = string.IsNullOrEmpty(searchFeatures) ||
                     stamp.Features.ToLower().Contains(searchFeatures);
 
@@ -352,14 +377,15 @@ namespace collectionofstamp
                     byFeatures && byYear && byCirculation)
                 {
                     dataGridViewStamps.Rows.Add(
-                        stamp.Naming, 
-                        stamp.Country, 
-                        stamp.Price, 
-                        stamp.Year, 
-                        stamp.Circulation, 
+                        stamp.Naming,
+                        stamp.Country,
+                        stamp.Price,
+                        stamp.Year,
+                        stamp.Circulation,
                         stamp.Features);
                 }
             }
+            ClearStampFields();
         }
 
         private void buttonSearchCollectors_Click(object sender, EventArgs e)
@@ -375,6 +401,7 @@ namespace collectionofstamp
                 string.IsNullOrEmpty(searchRareStamp))
             {
                 DisplayAllCollectors();
+                ClearCollectorFields();
                 return;
             }
 
@@ -392,17 +419,18 @@ namespace collectionofstamp
 
                 bool byRareStamps = string.IsNullOrEmpty(searchRareStamp) ||
                     collector.RareStamps.ToLower().Contains(searchRareStamp);
-                
-                if (byName && byCountry && 
+
+                if (byName && byCountry &&
                     byContactData && byRareStamps)
                 {
                     dataGridViewCollectors.Rows.Add(
-                        collector.Country, 
-                        collector.Name, 
-                        collector.ContactData, 
+                        collector.Country,
+                        collector.Name,
+                        collector.ContactData,
                         collector.RareStamps);
                 }
             }
+            ClearCollectorFields();
         }
 
         private void buttonSearchMy_Click(object sender, EventArgs e)
@@ -422,6 +450,7 @@ namespace collectionofstamp
                 !searchYear && !searchCirculation)
             {
                 DisplayAllMyCollection();
+                ClearMyCollectionTextBoxes();
                 return;
             }
 
@@ -448,14 +477,15 @@ namespace collectionofstamp
                     byFeatures && byYear && byCirculation)
                 {
                     dataGridViewMy.Rows.Add(
-                        stamp.Naming, 
-                        stamp.Country, 
-                        stamp.Price, 
-                        stamp.Year, 
-                        stamp.Circulation, 
+                        stamp.Naming,
+                        stamp.Country,
+                        stamp.Price,
+                        stamp.Year,
+                        stamp.Circulation,
                         stamp.Features);
                 }
             }
+            ClearMyCollectionTextBoxes();
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
@@ -513,6 +543,10 @@ namespace collectionofstamp
                 int selectedIndex = dataGridViewStamps.SelectedRows[0].Index;
                 var stamp = stamps[selectedIndex];
 
+                string oldNaming = stamp.Naming;
+                string oldCountry = stamp.Country;
+                int oldYear = stamp.Year;
+
                 stamp.Naming = txtBoxNaming.Text.Trim();
                 stamp.Country = txtBoxCountry.Text.Trim();
                 stamp.Price = txtBoxPrice.Text.Trim();
@@ -521,9 +555,9 @@ namespace collectionofstamp
                 stamp.Features = txtBoxFeatures.Text.Trim();
 
                 var myStamp = myCollection.FirstOrDefault(s =>
-                    s.Naming == stamps[selectedIndex].Naming &&
-                    s.Country == stamps[selectedIndex].Country &&
-                    s.Year == stamps[selectedIndex].Year);
+                    s.Naming == oldNaming &&
+                    s.Country == oldCountry &&
+                    s.Year == oldYear);
                 if (myStamp != null)
                 {
                     myStamp.Naming = stamp.Naming;
@@ -581,27 +615,17 @@ namespace collectionofstamp
             }
         }
 
-        private void ClearMyCollectionTextBoxes()
-        {
-            txtBoxNamingMy.Clear();
-            txtBoxCountryMy.Clear();
-            txtBoxPriceMy.Clear();
-            txtBoxYearMy.Clear();
-            txtBoxCirculationMy.Clear();
-            txtBoxFeaturesMy.Clear();
-        }
-
         private void dataGridViewStamps_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridViewStamps.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridViewStamps.SelectedRows[0];
-                txtBoxNaming.Text = selectedRow.Cells["Name"].Value?.ToString();
-                txtBoxCountry.Text = selectedRow.Cells["Country"].Value?.ToString();
-                txtBoxPrice.Text = selectedRow.Cells["Price"].Value?.ToString();
-                txtBoxYear.Text = selectedRow.Cells["Year"].Value?.ToString();
-                txtBoxCirculation.Text = selectedRow.Cells["Circulation"].Value?.ToString();
-                txtBoxFeatures.Text = selectedRow.Cells["Features"].Value?.ToString();
+                txtBoxNaming.Text = selectedRow.Cells["NameStamp"].Value?.ToString();
+                txtBoxCountry.Text = selectedRow.Cells["CountryStamp"].Value?.ToString();
+                txtBoxPrice.Text = selectedRow.Cells["PriceStamp"].Value?.ToString();
+                txtBoxYear.Text = selectedRow.Cells["YearStamp"].Value?.ToString();
+                txtBoxCirculation.Text = selectedRow.Cells["CirculationStamp"].Value?.ToString();
+                txtBoxFeatures.Text = selectedRow.Cells["FeaturesStamp"].Value?.ToString();
             }
         }
 
@@ -610,10 +634,10 @@ namespace collectionofstamp
             if (dataGridViewCollectors.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridViewCollectors.SelectedRows[0];
-                txtBoxCountryCollectors.Text = selectedRow.Cells["Country"].Value?.ToString();
-                txtBoxNameCollectors.Text = selectedRow.Cells["Name"].Value?.ToString();
-                txtBoxContactCollectors.Text = selectedRow.Cells["Contact"].Value?.ToString();
-                txtBoxRareCollectors.Text = selectedRow.Cells["RareStamps"].Value?.ToString();
+                txtBoxCountryCollectors.Text = selectedRow.Cells["CountryCollector"].Value?.ToString();
+                txtBoxNameCollectors.Text = selectedRow.Cells["NameCollector"].Value?.ToString();
+                txtBoxContactCollectors.Text = selectedRow.Cells["ContactCollector"].Value?.ToString();
+                txtBoxRareCollectors.Text = selectedRow.Cells["RareStampsCollector"].Value?.ToString();
             }
         }
 
@@ -622,12 +646,12 @@ namespace collectionofstamp
             if (dataGridViewMy.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridViewMy.SelectedRows[0];
-                txtBoxNamingMy.Text = selectedRow.Cells["Name"].Value?.ToString();
-                txtBoxCountryMy.Text = selectedRow.Cells["Country"].Value?.ToString();
-                txtBoxPriceMy.Text = selectedRow.Cells["Price"].Value?.ToString();
-                txtBoxYearMy.Text = selectedRow.Cells["Year"].Value?.ToString();
-                txtBoxCirculationMy.Text = selectedRow.Cells["Circulation"].Value?.ToString();
-                txtBoxFeaturesMy.Text = selectedRow.Cells["Features"].Value?.ToString();
+                txtBoxNamingMy.Text = selectedRow.Cells["NameMy"].Value?.ToString();
+                txtBoxCountryMy.Text = selectedRow.Cells["CountryMy"].Value?.ToString();
+                txtBoxPriceMy.Text = selectedRow.Cells["PriceMy"].Value?.ToString();
+                txtBoxYearMy.Text = selectedRow.Cells["YearMy"].Value?.ToString();
+                txtBoxCirculationMy.Text = selectedRow.Cells["CirculationMy"].Value?.ToString();
+                txtBoxFeaturesMy.Text = selectedRow.Cells["FeaturesMy"].Value?.ToString();
             }
         }
     }

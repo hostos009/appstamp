@@ -22,7 +22,14 @@ namespace collectionofstamp
             tabControl1 = new TabControl();
             tabStamps = new TabPage();
             dataGridViewStamps = new DataGridView();
+            nameStampColumn = new DataGridViewTextBoxColumn();
+            countryStampColumn = new DataGridViewTextBoxColumn();
+            priceStampColumn = new DataGridViewTextBoxColumn();
+            yearStampColumn = new DataGridViewTextBoxColumn();
+            circulationStampColumn = new DataGridViewTextBoxColumn();
+            featuresStampColumn = new DataGridViewTextBoxColumn();
             panelStamps = new Panel();
+            buttonEditStamp = new Button();
             labelNaming = new Label();
             txtBoxNaming = new TextBox();
             labelFeatures = new Label();
@@ -38,15 +45,14 @@ namespace collectionofstamp
             txtBoxYear = new TextBox();
             txtBoxPrice = new TextBox();
             txtBoxCountry = new TextBox();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             tabCollectors = new TabPage();
             dataGridViewCollectors = new DataGridView();
+            countryCollectorColumn = new DataGridViewTextBoxColumn();
+            nameCollectorColumn = new DataGridViewTextBoxColumn();
+            contactCollectorColumn = new DataGridViewTextBoxColumn();
+            rareStampsCollectorColumn = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
+            buttonEditCollectors = new Button();
             labelNameOfCollectors = new Label();
             labelCountryOfCollectors = new Label();
             labelRareCollectors = new Label();
@@ -57,12 +63,14 @@ namespace collectionofstamp
             txtBoxContactCollectors = new TextBox();
             txtBoxNameCollectors = new TextBox();
             txtBoxCountryCollectors = new TextBox();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
             tabMyCollection = new TabPage();
             dataGridViewMy = new DataGridView();
+            nameMyColumn = new DataGridViewTextBoxColumn();
+            countryMyColumn = new DataGridViewTextBoxColumn();
+            priceMyColumn = new DataGridViewTextBoxColumn();
+            yearMyColumn = new DataGridViewTextBoxColumn();
+            circulationMyColumn = new DataGridViewTextBoxColumn();
+            featuresMyColumn = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             buttonRemove = new Button();
             labelNamingMy = new Label();
@@ -78,14 +86,6 @@ namespace collectionofstamp
             txtBoxYearMy = new TextBox();
             txtBoxPriceMy = new TextBox();
             txtBoxCountryMy = new TextBox();
-            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn14 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn16 = new DataGridViewTextBoxColumn();
-            buttonEditStamp = new Button();
-            buttonEditCollectors = new Button();
             tabControl1.SuspendLayout();
             tabStamps.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewStamps).BeginInit();
@@ -126,7 +126,7 @@ namespace collectionofstamp
             // 
             dataGridViewStamps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewStamps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewStamps.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6 });
+            dataGridViewStamps.Columns.AddRange(new DataGridViewColumn[] { nameStampColumn, countryStampColumn, priceStampColumn, yearStampColumn, circulationStampColumn, featuresStampColumn });
             dataGridViewStamps.Dock = DockStyle.Fill;
             dataGridViewStamps.Location = new Point(185, 3);
             dataGridViewStamps.MultiSelect = false;
@@ -135,6 +135,36 @@ namespace collectionofstamp
             dataGridViewStamps.Size = new Size(588, 417);
             dataGridViewStamps.TabIndex = 13;
             dataGridViewStamps.SelectionChanged += dataGridViewStamps_SelectionChanged;
+            // 
+            // nameStampColumn
+            // 
+            nameStampColumn.HeaderText = "Назва";
+            nameStampColumn.Name = "NameStamp";
+            // 
+            // countryStampColumn
+            // 
+            countryStampColumn.HeaderText = "Країна";
+            countryStampColumn.Name = "CountryStamp";
+            // 
+            // priceStampColumn
+            // 
+            priceStampColumn.HeaderText = "Номінальна вартість";
+            priceStampColumn.Name = "PriceStamp";
+            // 
+            // yearStampColumn
+            // 
+            yearStampColumn.HeaderText = "Рік випуску";
+            yearStampColumn.Name = "YearStamp";
+            // 
+            // circulationStampColumn
+            // 
+            circulationStampColumn.HeaderText = "Тираж";
+            circulationStampColumn.Name = "CirculationStamp";
+            // 
+            // featuresStampColumn
+            // 
+            featuresStampColumn.HeaderText = "Особливості";
+            featuresStampColumn.Name = "FeaturesStamp";
             // 
             // panelStamps
             // 
@@ -159,6 +189,17 @@ namespace collectionofstamp
             panelStamps.Name = "panelStamps";
             panelStamps.Size = new Size(182, 417);
             panelStamps.TabIndex = 0;
+            // 
+            // buttonEditStamp
+            // 
+            buttonEditStamp.BackColor = Color.Gainsboro;
+            buttonEditStamp.Location = new Point(3, 275);
+            buttonEditStamp.Name = "buttonEditStamp";
+            buttonEditStamp.Size = new Size(176, 30);
+            buttonEditStamp.TabIndex = 15;
+            buttonEditStamp.Text = "Змінити";
+            buttonEditStamp.UseVisualStyleBackColor = true;
+            buttonEditStamp.Click += buttonEditStamp_Click;
             // 
             // labelNaming
             // 
@@ -289,36 +330,6 @@ namespace collectionofstamp
             txtBoxCountry.Size = new Size(176, 23);
             txtBoxCountry.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "Назва";
-            dataGridViewTextBoxColumn1.Name = "Name";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.HeaderText = "Країна";
-            dataGridViewTextBoxColumn2.Name = "Country";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.HeaderText = "Номінальна вартість";
-            dataGridViewTextBoxColumn3.Name = "Price";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.HeaderText = "Рік випуску";
-            dataGridViewTextBoxColumn4.Name = "Year";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.HeaderText = "Тираж";
-            dataGridViewTextBoxColumn5.Name = "Circulation";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.HeaderText = "Особливості";
-            dataGridViewTextBoxColumn6.Name = "Features";
-            // 
             // tabCollectors
             // 
             tabCollectors.Controls.Add(dataGridViewCollectors);
@@ -335,7 +346,7 @@ namespace collectionofstamp
             // 
             dataGridViewCollectors.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCollectors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCollectors.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8, dataGridViewTextBoxColumn9, dataGridViewTextBoxColumn10 });
+            dataGridViewCollectors.Columns.AddRange(new DataGridViewColumn[] { countryCollectorColumn, nameCollectorColumn, contactCollectorColumn, rareStampsCollectorColumn });
             dataGridViewCollectors.Dock = DockStyle.Fill;
             dataGridViewCollectors.Location = new Point(185, 3);
             dataGridViewCollectors.MultiSelect = false;
@@ -344,6 +355,26 @@ namespace collectionofstamp
             dataGridViewCollectors.Size = new Size(588, 417);
             dataGridViewCollectors.TabIndex = 14;
             dataGridViewCollectors.SelectionChanged += dataGridViewCollectors_SelectionChanged;
+            // 
+            // countryCollectorColumn
+            // 
+            countryCollectorColumn.HeaderText = "Країна";
+            countryCollectorColumn.Name = "CountryCollector";
+            // 
+            // nameCollectorColumn
+            // 
+            nameCollectorColumn.HeaderText = "Ім'я";
+            nameCollectorColumn.Name = "NameCollector";
+            // 
+            // contactCollectorColumn
+            // 
+            contactCollectorColumn.HeaderText = "Контактні дані";
+            contactCollectorColumn.Name = "ContactCollector";
+            // 
+            // rareStampsCollectorColumn
+            // 
+            rareStampsCollectorColumn.HeaderText = "Рідкісні марки";
+            rareStampsCollectorColumn.Name = "RareStampsCollector";
             // 
             // panel2
             // 
@@ -363,6 +394,17 @@ namespace collectionofstamp
             panel2.Name = "panel2";
             panel2.Size = new Size(182, 417);
             panel2.TabIndex = 1;
+            // 
+            // buttonEditCollectors
+            // 
+            buttonEditCollectors.BackColor = Color.Gainsboro;
+            buttonEditCollectors.Location = new Point(3, 272);
+            buttonEditCollectors.Name = "buttonEditCollectors";
+            buttonEditCollectors.Size = new Size(176, 35);
+            buttonEditCollectors.TabIndex = 14;
+            buttonEditCollectors.Text = "Змінити";
+            buttonEditCollectors.UseVisualStyleBackColor = true;
+            buttonEditCollectors.Click += buttonEditCollectors_Click;
             // 
             // labelNameOfCollectors
             // 
@@ -450,26 +492,6 @@ namespace collectionofstamp
             txtBoxCountryCollectors.Size = new Size(176, 23);
             txtBoxCountryCollectors.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.HeaderText = "Країна";
-            dataGridViewTextBoxColumn7.Name = "Country";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            dataGridViewTextBoxColumn8.HeaderText = "Ім'я";
-            dataGridViewTextBoxColumn8.Name = "Name";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            dataGridViewTextBoxColumn9.HeaderText = "Контактні дані";
-            dataGridViewTextBoxColumn9.Name = "Contact";
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            dataGridViewTextBoxColumn10.HeaderText = "Рідкісні марки";
-            dataGridViewTextBoxColumn10.Name = "RareStamps";
-            // 
             // tabMyCollection
             // 
             tabMyCollection.Controls.Add(dataGridViewMy);
@@ -485,7 +507,7 @@ namespace collectionofstamp
             // 
             dataGridViewMy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewMy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewMy.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn11, dataGridViewTextBoxColumn12, dataGridViewTextBoxColumn13, dataGridViewTextBoxColumn14, dataGridViewTextBoxColumn15, dataGridViewTextBoxColumn16 });
+            dataGridViewMy.Columns.AddRange(new DataGridViewColumn[] { nameMyColumn, countryMyColumn, priceMyColumn, yearMyColumn, circulationMyColumn, featuresMyColumn });
             dataGridViewMy.Dock = DockStyle.Fill;
             dataGridViewMy.Location = new Point(182, 0);
             dataGridViewMy.MultiSelect = false;
@@ -494,6 +516,36 @@ namespace collectionofstamp
             dataGridViewMy.Size = new Size(594, 423);
             dataGridViewMy.TabIndex = 14;
             dataGridViewMy.SelectionChanged += dataGridViewMy_SelectionChanged;
+            // 
+            // nameMyColumn
+            // 
+            nameMyColumn.HeaderText = "Назва";
+            nameMyColumn.Name = "NameMy";
+            // 
+            // countryMyColumn
+            // 
+            countryMyColumn.HeaderText = "Країна";
+            countryMyColumn.Name = "CountryMy";
+            // 
+            // priceMyColumn
+            // 
+            priceMyColumn.HeaderText = "Номінальна вартість";
+            priceMyColumn.Name = "PriceMy";
+            // 
+            // yearMyColumn
+            // 
+            yearMyColumn.HeaderText = "Рік випуску";
+            yearMyColumn.Name = "YearMy";
+            // 
+            // circulationMyColumn
+            // 
+            circulationMyColumn.HeaderText = "Тираж";
+            circulationMyColumn.Name = "CirculationMy";
+            // 
+            // featuresMyColumn
+            // 
+            featuresMyColumn.HeaderText = "Особливості";
+            featuresMyColumn.Name = "FeaturesMy";
             // 
             // panel1
             // 
@@ -635,58 +687,6 @@ namespace collectionofstamp
             txtBoxCountryMy.Size = new Size(176, 23);
             txtBoxCountryMy.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn11
-            // 
-            dataGridViewTextBoxColumn11.HeaderText = "Назва";
-            dataGridViewTextBoxColumn11.Name = "Name";
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            dataGridViewTextBoxColumn12.HeaderText = "Країна";
-            dataGridViewTextBoxColumn12.Name = "Country";
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            dataGridViewTextBoxColumn13.HeaderText = "Номінальна вартість";
-            dataGridViewTextBoxColumn13.Name = "Price";
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            dataGridViewTextBoxColumn14.HeaderText = "Рік випуску";
-            dataGridViewTextBoxColumn14.Name = "Year";
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            dataGridViewTextBoxColumn15.HeaderText = "Тираж";
-            dataGridViewTextBoxColumn15.Name = "Circulation";
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            dataGridViewTextBoxColumn16.HeaderText = "Особливості";
-            dataGridViewTextBoxColumn16.Name = "Features";
-            // 
-            // buttonEditStamp
-            // 
-            buttonEditStamp.BackColor = Color.Gainsboro;
-            buttonEditStamp.Location = new Point(3, 275);
-            buttonEditStamp.Name = "buttonEditStamp";
-            buttonEditStamp.Size = new Size(176, 30);
-            buttonEditStamp.TabIndex = 15;
-            buttonEditStamp.Text = "Змінити";
-            buttonEditStamp.UseVisualStyleBackColor = true;
-            buttonEditStamp.Click += buttonEditStamp_Click;
-            // 
-            // buttonEditCollectors
-            // 
-            buttonEditCollectors.BackColor = Color.Gainsboro;
-            buttonEditCollectors.Location = new Point(3, 272);
-            buttonEditCollectors.Name = "buttonEditCollectors";
-            buttonEditCollectors.Size = new Size(176, 35);
-            buttonEditCollectors.TabIndex = 14;
-            buttonEditCollectors.Text = "Змінити";
-            buttonEditCollectors.UseVisualStyleBackColor = true;
-            buttonEditCollectors.Click += buttonEditCollectors_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -764,22 +764,22 @@ namespace collectionofstamp
         private Label labelNamingMy;
         private TextBox txtBoxNamingMy;
         private Button buttonRemove;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private DataGridViewTextBoxColumn nameStampColumn;
+        private DataGridViewTextBoxColumn countryStampColumn;
+        private DataGridViewTextBoxColumn priceStampColumn;
+        private DataGridViewTextBoxColumn yearStampColumn;
+        private DataGridViewTextBoxColumn circulationStampColumn;
+        private DataGridViewTextBoxColumn featuresStampColumn;
+        private DataGridViewTextBoxColumn countryCollectorColumn;
+        private DataGridViewTextBoxColumn nameCollectorColumn;
+        private DataGridViewTextBoxColumn contactCollectorColumn;
+        private DataGridViewTextBoxColumn rareStampsCollectorColumn;
+        private DataGridViewTextBoxColumn nameMyColumn;
+        private DataGridViewTextBoxColumn countryMyColumn;
+        private DataGridViewTextBoxColumn priceMyColumn;
+        private DataGridViewTextBoxColumn yearMyColumn;
+        private DataGridViewTextBoxColumn circulationMyColumn;
+        private DataGridViewTextBoxColumn featuresMyColumn;
         private Button buttonEditStamp;
         private Button buttonEditCollectors;
     }
