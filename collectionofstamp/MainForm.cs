@@ -309,16 +309,7 @@ namespace collectionofstamp
             {
                 int selectedIndex = dataGridViewStamps.SelectedRows[0].Index;
                 var selectedStamp = stamps[selectedIndex];
-                bool stampExists = myCollection.Any(s =>
-                    s.Naming == selectedStamp.Naming &&
-                    s.Country == selectedStamp.Country &&
-                    s.Year == selectedStamp.Year);
-                if (stampExists)
-                {
-                    MessageBox.Show("Така марка вже є у вашій колекції.",
-                        "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+                
                 myCollection.Add(selectedStamp);
                 SaveData();
                 DisplayAllMyCollection();
@@ -620,12 +611,12 @@ namespace collectionofstamp
             if (dataGridViewStamps.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridViewStamps.SelectedRows[0];
-                txtBoxNaming.Text = selectedRow.Cells["NameStamp"].Value?.ToString();
-                txtBoxCountry.Text = selectedRow.Cells["CountryStamp"].Value?.ToString();
-                txtBoxPrice.Text = selectedRow.Cells["PriceStamp"].Value?.ToString();
-                txtBoxYear.Text = selectedRow.Cells["YearStamp"].Value?.ToString();
-                txtBoxCirculation.Text = selectedRow.Cells["CirculationStamp"].Value?.ToString();
-                txtBoxFeatures.Text = selectedRow.Cells["FeaturesStamp"].Value?.ToString();
+                txtBoxNaming.Text = selectedRow.Cells["nameStampColumn"].Value?.ToString();
+                txtBoxCountry.Text = selectedRow.Cells["countryStampColumn"].Value?.ToString();
+                txtBoxPrice.Text = selectedRow.Cells["priceStampColumn"].Value?.ToString();
+                txtBoxYear.Text = selectedRow.Cells["yearStampColumn"].Value?.ToString();
+                txtBoxCirculation.Text = selectedRow.Cells["circulationStampColumn"].Value?.ToString();
+                txtBoxFeatures.Text = selectedRow.Cells["featuresStampColumn"].Value?.ToString();
             }
         }
 
@@ -634,10 +625,10 @@ namespace collectionofstamp
             if (dataGridViewCollectors.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridViewCollectors.SelectedRows[0];
-                txtBoxCountryCollectors.Text = selectedRow.Cells["CountryCollector"].Value?.ToString();
-                txtBoxNameCollectors.Text = selectedRow.Cells["NameCollector"].Value?.ToString();
-                txtBoxContactCollectors.Text = selectedRow.Cells["ContactCollector"].Value?.ToString();
-                txtBoxRareCollectors.Text = selectedRow.Cells["RareStampsCollector"].Value?.ToString();
+                txtBoxCountryCollectors.Text = selectedRow.Cells["countryCollectorColumn"].Value?.ToString();
+                txtBoxNameCollectors.Text = selectedRow.Cells["nameCollectorColumn"].Value?.ToString();
+                txtBoxContactCollectors.Text = selectedRow.Cells["contactCollectorColumn"].Value?.ToString();
+                txtBoxRareCollectors.Text = selectedRow.Cells["rareStampsCollectorColumn"].Value?.ToString();
             }
         }
 
@@ -646,12 +637,12 @@ namespace collectionofstamp
             if (dataGridViewMy.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridViewMy.SelectedRows[0];
-                txtBoxNamingMy.Text = selectedRow.Cells["NameMy"].Value?.ToString();
-                txtBoxCountryMy.Text = selectedRow.Cells["CountryMy"].Value?.ToString();
-                txtBoxPriceMy.Text = selectedRow.Cells["PriceMy"].Value?.ToString();
-                txtBoxYearMy.Text = selectedRow.Cells["YearMy"].Value?.ToString();
-                txtBoxCirculationMy.Text = selectedRow.Cells["CirculationMy"].Value?.ToString();
-                txtBoxFeaturesMy.Text = selectedRow.Cells["FeaturesMy"].Value?.ToString();
+                txtBoxNamingMy.Text = selectedRow.Cells["nameMyColumn"].Value?.ToString();
+                txtBoxCountryMy.Text = selectedRow.Cells["countryMyColumn"].Value?.ToString();
+                txtBoxPriceMy.Text = selectedRow.Cells["priceMyColumn"].Value?.ToString();
+                txtBoxYearMy.Text = selectedRow.Cells["yearMyColumn"].Value?.ToString();
+                txtBoxCirculationMy.Text = selectedRow.Cells["circulationMyColumn"].Value?.ToString();
+                txtBoxFeaturesMy.Text = selectedRow.Cells["featuresMyColumn"].Value?.ToString();
             }
         }
     }
