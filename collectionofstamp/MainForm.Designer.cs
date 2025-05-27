@@ -126,6 +126,7 @@ namespace collectionofstamp
             // 
             dataGridViewStamps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewStamps.AutoGenerateColumns = false;
+            dataGridViewStamps.ReadOnly = true;
             dataGridViewStamps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewStamps.Columns.AddRange(new DataGridViewColumn[] { nameStampColumn, countryStampColumn, priceStampColumn, yearStampColumn, circulationStampColumn, featuresStampColumn });
             dataGridViewStamps.Dock = DockStyle.Fill;
@@ -347,6 +348,7 @@ namespace collectionofstamp
             // 
             dataGridViewCollectors.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCollectors.AutoGenerateColumns = false;
+            dataGridViewCollectors.ReadOnly = true;
             dataGridViewCollectors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCollectors.Columns.AddRange(new DataGridViewColumn[] { countryCollectorColumn, nameCollectorColumn, contactCollectorColumn, rareStampsCollectorColumn });
             dataGridViewCollectors.Dock = DockStyle.Fill;
@@ -509,6 +511,7 @@ namespace collectionofstamp
             // 
             dataGridViewMy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewMy.AutoGenerateColumns = false;
+            dataGridViewMy.ReadOnly = true;
             dataGridViewMy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMy.Columns.AddRange(new DataGridViewColumn[] { nameMyColumn, countryMyColumn, priceMyColumn, yearMyColumn, circulationMyColumn, featuresMyColumn });
             dataGridViewMy.Dock = DockStyle.Fill;
