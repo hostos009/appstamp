@@ -125,14 +125,13 @@ namespace collectionofstamp
             // dataGridViewStamps
             // 
             dataGridViewStamps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewStamps.AutoGenerateColumns = false;
-            dataGridViewStamps.ReadOnly = true;
             dataGridViewStamps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewStamps.Columns.AddRange(new DataGridViewColumn[] { nameStampColumn, countryStampColumn, priceStampColumn, yearStampColumn, circulationStampColumn, featuresStampColumn });
             dataGridViewStamps.Dock = DockStyle.Fill;
             dataGridViewStamps.Location = new Point(185, 3);
             dataGridViewStamps.MultiSelect = false;
             dataGridViewStamps.Name = "dataGridViewStamps";
+            dataGridViewStamps.ReadOnly = true;
             dataGridViewStamps.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewStamps.Size = new Size(588, 417);
             dataGridViewStamps.TabIndex = 13;
@@ -142,31 +141,37 @@ namespace collectionofstamp
             // 
             nameStampColumn.HeaderText = "Назва";
             nameStampColumn.Name = "nameStampColumn";
+            nameStampColumn.ReadOnly = true;
             // 
             // countryStampColumn
             // 
             countryStampColumn.HeaderText = "Країна";
             countryStampColumn.Name = "countryStampColumn";
+            countryStampColumn.ReadOnly = true;
             // 
             // priceStampColumn
             // 
             priceStampColumn.HeaderText = "Номінальна вартість";
             priceStampColumn.Name = "priceStampColumn";
+            priceStampColumn.ReadOnly = true;
             // 
             // yearStampColumn
             // 
             yearStampColumn.HeaderText = "Рік випуску";
             yearStampColumn.Name = "yearStampColumn";
+            yearStampColumn.ReadOnly = true;
             // 
             // circulationStampColumn
             // 
             circulationStampColumn.HeaderText = "Тираж";
             circulationStampColumn.Name = "circulationStampColumn";
+            circulationStampColumn.ReadOnly = true;
             // 
             // featuresStampColumn
             // 
             featuresStampColumn.HeaderText = "Особливості";
             featuresStampColumn.Name = "featuresStampColumn";
+            featuresStampColumn.ReadOnly = true;
             // 
             // panelStamps
             // 
@@ -324,6 +329,7 @@ namespace collectionofstamp
             txtBoxPrice.Name = "txtBoxPrice";
             txtBoxPrice.Size = new Size(176, 23);
             txtBoxPrice.TabIndex = 1;
+            txtBoxPrice.TextChanged += txtBoxPrice_TextChanged;
             // 
             // txtBoxCountry
             // 
@@ -347,14 +353,13 @@ namespace collectionofstamp
             // dataGridViewCollectors
             // 
             dataGridViewCollectors.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCollectors.AutoGenerateColumns = false;
-            dataGridViewCollectors.ReadOnly = true;
             dataGridViewCollectors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCollectors.Columns.AddRange(new DataGridViewColumn[] { countryCollectorColumn, nameCollectorColumn, contactCollectorColumn, rareStampsCollectorColumn });
             dataGridViewCollectors.Dock = DockStyle.Fill;
             dataGridViewCollectors.Location = new Point(185, 3);
             dataGridViewCollectors.MultiSelect = false;
             dataGridViewCollectors.Name = "dataGridViewCollectors";
+            dataGridViewCollectors.ReadOnly = true;
             dataGridViewCollectors.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCollectors.Size = new Size(588, 417);
             dataGridViewCollectors.TabIndex = 14;
@@ -364,21 +369,25 @@ namespace collectionofstamp
             // 
             countryCollectorColumn.HeaderText = "Країна";
             countryCollectorColumn.Name = "countryCollectorColumn";
+            countryCollectorColumn.ReadOnly = true;
             // 
             // nameCollectorColumn
             // 
             nameCollectorColumn.HeaderText = "Ім'я";
             nameCollectorColumn.Name = "nameCollectorColumn";
+            nameCollectorColumn.ReadOnly = true;
             // 
             // contactCollectorColumn
             // 
             contactCollectorColumn.HeaderText = "Контактні дані";
             contactCollectorColumn.Name = "contactCollectorColumn";
+            contactCollectorColumn.ReadOnly = true;
             // 
             // rareStampsCollectorColumn
             // 
             rareStampsCollectorColumn.HeaderText = "Рідкісні марки";
             rareStampsCollectorColumn.Name = "rareStampsCollectorColumn";
+            rareStampsCollectorColumn.ReadOnly = true;
             // 
             // panel2
             // 
@@ -510,14 +519,13 @@ namespace collectionofstamp
             // dataGridViewMy
             // 
             dataGridViewMy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewMy.AutoGenerateColumns = false;
-            dataGridViewMy.ReadOnly = true;
             dataGridViewMy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMy.Columns.AddRange(new DataGridViewColumn[] { nameMyColumn, countryMyColumn, priceMyColumn, yearMyColumn, circulationMyColumn, featuresMyColumn });
             dataGridViewMy.Dock = DockStyle.Fill;
             dataGridViewMy.Location = new Point(182, 0);
             dataGridViewMy.MultiSelect = false;
             dataGridViewMy.Name = "dataGridViewMy";
+            dataGridViewMy.ReadOnly = true;
             dataGridViewMy.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewMy.Size = new Size(594, 423);
             dataGridViewMy.TabIndex = 14;
@@ -527,31 +535,37 @@ namespace collectionofstamp
             // 
             nameMyColumn.HeaderText = "Назва";
             nameMyColumn.Name = "nameMyColumn";
+            nameMyColumn.ReadOnly = true;
             // 
             // countryMyColumn
             // 
             countryMyColumn.HeaderText = "Країна";
             countryMyColumn.Name = "countryMyColumn";
+            countryMyColumn.ReadOnly = true;
             // 
             // priceMyColumn
             // 
             priceMyColumn.HeaderText = "Номінальна вартість";
             priceMyColumn.Name = "priceMyColumn";
+            priceMyColumn.ReadOnly = true;
             // 
             // yearMyColumn
             // 
             yearMyColumn.HeaderText = "Рік випуску";
             yearMyColumn.Name = "yearMyColumn";
+            yearMyColumn.ReadOnly = true;
             // 
             // circulationMyColumn
             // 
             circulationMyColumn.HeaderText = "Тираж";
             circulationMyColumn.Name = "circulationMyColumn";
+            circulationMyColumn.ReadOnly = true;
             // 
             // featuresMyColumn
             // 
             featuresMyColumn.HeaderText = "Особливості";
             featuresMyColumn.Name = "featuresMyColumn";
+            featuresMyColumn.ReadOnly = true;
             // 
             // panel1
             // 
