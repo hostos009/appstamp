@@ -34,8 +34,11 @@ namespace collectionofstamp
         private void DisplayData()
         {
             DisplayManager.DisplayAllStamps(dataGridViewStamps, stamps);
+            dataGridViewStamps.ClearSelection();
             DisplayManager.DisplayAllCollectors(dataGridViewCollectors, collectors);
+            dataGridViewCollectors.ClearSelection();
             DisplayManager.DisplayAllMyCollection(dataGridViewMy, myCollection);
+            dataGridViewMy.ClearSelection();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
