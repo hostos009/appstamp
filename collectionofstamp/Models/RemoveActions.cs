@@ -27,7 +27,6 @@ namespace collectionofstamp.Models
                     int selectedIndex = dataGridView.SelectedRows[0].Index;
                     myCollection.RemoveAt(selectedIndex);
                     saveData();
-                    Clear.ClearMyCollectionTextBoxes(txtBoxNamingMy, txtBoxCountryMy, txtBoxPriceMy, txtBoxYearMy, txtBoxCirculationMy, txtBoxFeaturesMy);
                     displayAllMyCollection();
                     MessageBox.Show("Марку успішно видалено з колекції",
                         "Інформація", MessageBoxButtons.OK,

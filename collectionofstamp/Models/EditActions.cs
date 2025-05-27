@@ -61,7 +61,6 @@ namespace collectionofstamp.Models
                 saveData();
                 displayAllStamps();
                 displayAllMyCollection();
-                Clear.ClearStampFields(txtBoxNaming, txtBoxCountry, txtBoxPrice, txtBoxYear, txtBoxCirculation, txtBoxFeatures);
                 MessageBox.Show("Марку успішно відредаговано!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -98,7 +97,6 @@ namespace collectionofstamp.Models
 
                 saveData();
                 displayAllCollectors();
-                Clear.ClearCollectorFields(txtBoxCountryCollectors, txtBoxNameCollectors, txtBoxContactCollectors, txtBoxRareCollectors);
                 MessageBox.Show("Колекціонера успішно відредаговано!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
