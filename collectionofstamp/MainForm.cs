@@ -70,56 +70,60 @@ namespace collectionofstamp
 
         private void DisplayData()
         {
-            DisplayAllStamps();
-            DisplayAllCollectors();
-            DisplayAllMyCollection();
+            DisplayManager.DisplayAllStamps(dataGridViewStamps, stamps);
+            DisplayManager.DisplayAllCollectors(dataGridViewCollectors, collectors);
+            DisplayManager.DisplayAllMyCollection(dataGridViewMy, myCollection);
+            
+            //DisplayAllStamps();
+            //DisplayAllCollectors();
+            //DisplayAllMyCollection();
         }
 
-        private void DisplayAllStamps()
-        {
-            dataGridViewStamps.Rows.Clear();
-            foreach (var stamp in stamps)
-            {
-                dataGridViewStamps.Rows.Add(
-                    stamp.Naming,
-                    stamp.Country,
-                    stamp.Price,
-                    stamp.Year,
-                    stamp.Circulation,
-                    stamp.Features);
-            }
-            ClearStampFields();
-        }
+        //private void DisplayAllStamps()
+        //{
+        //    dataGridViewStamps.Rows.Clear();
+        //    foreach (var stamp in stamps)
+        //    {
+        //        dataGridViewStamps.Rows.Add(
+        //            stamp.Naming,
+        //            stamp.Country,
+        //            stamp.Price,
+        //            stamp.Year,
+        //            stamp.Circulation,
+        //            stamp.Features);
+        //    }
+        //    ClearStampFields();
+        //}
 
-        private void DisplayAllCollectors()
-        {
-            dataGridViewCollectors.Rows.Clear();
-            foreach (var collector in collectors)
-            {
-                dataGridViewCollectors.Rows.Add(
-                    collector.Country,
-                    collector.Name,
-                    collector.ContactData,
-                    collector.RareStamps);
-            }
-            ClearCollectorFields();
-        }
+        //private void DisplayAllCollectors()
+        //{
+        //    dataGridViewCollectors.Rows.Clear();
+        //    foreach (var collector in collectors)
+        //    {
+        //        dataGridViewCollectors.Rows.Add(
+        //            collector.Country,
+        //            collector.Name,
+        //            collector.ContactData,
+        //            collector.RareStamps);
+        //    }
+        //    ClearCollectorFields();
+        //}
 
-        private void DisplayAllMyCollection()
-        {
-            dataGridViewMy.Rows.Clear();
-            foreach (var stamp in myCollection)
-            {
-                dataGridViewMy.Rows.Add(
-                    stamp.Naming,
-                    stamp.Country,
-                    stamp.Price,
-                    stamp.Year,
-                    stamp.Circulation,
-                    stamp.Features);
-            }
-            ClearMyCollectionTextBoxes();
-        }
+        //private void DisplayAllMyCollection()
+        //{
+        //    dataGridViewMy.Rows.Clear();
+        //    foreach (var stamp in myCollection)
+        //    {
+        //        dataGridViewMy.Rows.Add(
+        //            stamp.Naming,
+        //            stamp.Country,
+        //            stamp.Price,
+        //            stamp.Year,
+        //            stamp.Circulation,
+        //            stamp.Features);
+        //    }
+        //    ClearMyCollectionTextBoxes();
+        //}
 
         private bool ValidateRequiredFields(params TextBox[] textBoxes)
         {
@@ -243,7 +247,7 @@ namespace collectionofstamp
                 };
                 stamps.Add(stamp);
                 SaveData();
-                DisplayAllStamps();
+                DisplayManager.DisplayAllStamps(dataGridViewStamps, stamps);
                 ClearStampFields();
                 MessageBox.Show("Марку успішно додано", "Інформація",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -285,7 +289,7 @@ namespace collectionofstamp
                 };
                 collectors.Add(collector);
                 SaveData();
-                DisplayAllCollectors();
+                DisplayManager.DisplayAllCollectors(dataGridViewCollectors, collectors);
                 ClearCollectorFields();
                 MessageBox.Show("Колекціонера успішно додано!", "Інформація",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -312,7 +316,7 @@ namespace collectionofstamp
                 
                 myCollection.Add(selectedStamp);
                 SaveData();
-                DisplayAllMyCollection();
+                DisplayManager.DisplayAllMyCollection(dataGridViewMy, myCollection);
                 ClearStampFields();
                 MessageBox.Show("Марку успішно додано до колекції!",
                     "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -340,7 +344,7 @@ namespace collectionofstamp
                 string.IsNullOrEmpty(searchFeatures) &&
                 !searchYear && !searchCirculation)
             {
-                DisplayAllStamps();
+                DisplayManager.DisplayAllStamps(dataGridViewStamps, stamps);
                 ClearStampFields();
                 return;
             }
@@ -391,7 +395,7 @@ namespace collectionofstamp
                 string.IsNullOrEmpty(searchContactData) &&
                 string.IsNullOrEmpty(searchRareStamp))
             {
-                DisplayAllCollectors();
+                DisplayManager.DisplayAllCollectors(dataGridViewCollectors, collectors);
                 ClearCollectorFields();
                 return;
             }
@@ -440,7 +444,7 @@ namespace collectionofstamp
                 string.IsNullOrEmpty(searchFeatures) &&
                 !searchYear && !searchCirculation)
             {
-                DisplayAllMyCollection();
+                DisplayManager.DisplayAllMyCollection(dataGridViewMy, myCollection);
                 ClearMyCollectionTextBoxes();
                 return;
             }
@@ -498,7 +502,7 @@ namespace collectionofstamp
                     myCollection.RemoveAt(selectedIndex);
                     SaveData();
                     ClearMyCollectionTextBoxes();
-                    DisplayAllMyCollection();
+                    DisplayManager.DisplayAllMyCollection(dataGridViewMy, myCollection);
                     MessageBox.Show("Марку успішно видалено з колекції",
                         "Інформація", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -560,8 +564,8 @@ namespace collectionofstamp
                 }
 
                 SaveData();
-                DisplayAllStamps();
-                DisplayAllMyCollection();
+                DisplayManager.DisplayAllStamps(dataGridViewStamps, stamps);
+                DisplayManager.DisplayAllMyCollection(dataGridViewMy, myCollection);
                 ClearStampFields();
                 MessageBox.Show("Марку успішно відредаговано!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -596,7 +600,7 @@ namespace collectionofstamp
                 collector.RareStamps = txtBoxRareCollectors.Text.Trim();
 
                 SaveData();
-                DisplayAllCollectors();
+                DisplayManager.DisplayAllCollectors(dataGridViewCollectors, collectors);
                 ClearCollectorFields();
                 MessageBox.Show("Колекціонера успішно відредаговано!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
