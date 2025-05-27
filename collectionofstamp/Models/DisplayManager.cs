@@ -50,6 +50,5 @@ namespace collectionofstamp.Models
                     stamp.Features);
             }
         }
-
     }
 }
