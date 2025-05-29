@@ -19,6 +19,21 @@ namespace collectionofstamp
 
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             tabControl1 = new TabControl();
             tabStamps = new TabPage();
             dataGridViewStamps = new DataGridView();
@@ -140,46 +155,52 @@ namespace collectionofstamp
             // 
             // nameStampColumn
             // 
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            nameStampColumn.DefaultCellStyle = dataGridViewCellStyle1;
             nameStampColumn.HeaderText = "Назва";
             nameStampColumn.Name = "nameStampColumn";
             nameStampColumn.ReadOnly = true;
-            nameStampColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 
             // countryStampColumn
             // 
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            countryStampColumn.DefaultCellStyle = dataGridViewCellStyle2;
             countryStampColumn.HeaderText = "Країна";
             countryStampColumn.Name = "countryStampColumn";
             countryStampColumn.ReadOnly = true;
-            countryStampColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 
             // priceStampColumn
             // 
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            priceStampColumn.DefaultCellStyle = dataGridViewCellStyle3;
             priceStampColumn.HeaderText = "Номінальна вартість";
             priceStampColumn.Name = "priceStampColumn";
             priceStampColumn.ReadOnly = true;
-            priceStampColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             // 
             // yearStampColumn
             // 
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            yearStampColumn.DefaultCellStyle = dataGridViewCellStyle4;
             yearStampColumn.HeaderText = "Рік випуску";
             yearStampColumn.Name = "yearStampColumn";
             yearStampColumn.ReadOnly = true;
-            yearStampColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             // 
             // circulationStampColumn
             // 
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            circulationStampColumn.DefaultCellStyle = dataGridViewCellStyle5;
             circulationStampColumn.HeaderText = "Тираж";
             circulationStampColumn.Name = "circulationStampColumn";
             circulationStampColumn.ReadOnly = true;
-            circulationStampColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             // 
             // featuresStampColumn
             // 
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            featuresStampColumn.DefaultCellStyle = dataGridViewCellStyle6;
             featuresStampColumn.HeaderText = "Особливості";
+            featuresStampColumn.MinimumWidth = 100;
             featuresStampColumn.Name = "featuresStampColumn";
             featuresStampColumn.ReadOnly = true;
-            featuresStampColumn.MinimumWidth = 100;
-            featuresStampColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 
             // panelStamps
             // 
@@ -237,9 +258,9 @@ namespace collectionofstamp
             labelFeatures.AutoSize = true;
             labelFeatures.Location = new Point(3, 223);
             labelFeatures.Name = "labelFeatures";
-            labelFeatures.Size = new Size(77, 15);
+            labelFeatures.Size = new Size(170, 15);
             labelFeatures.TabIndex = 12;
-            labelFeatures.Text = "Особливості";
+            labelFeatures.Text = "Особливості (Необов'язково)";
             // 
             // labelCirculation
             // 
@@ -295,7 +316,7 @@ namespace collectionofstamp
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(176, 30);
             buttonSearch.TabIndex = 6;
-            buttonSearch.Text = "Пошук";
+            buttonSearch.Text = "Пошук (Очистити)";
             buttonSearch.UseVisualStyleBackColor = false;
             buttonSearch.Click += buttonSearch_Click;
             // 
@@ -337,7 +358,6 @@ namespace collectionofstamp
             txtBoxPrice.Name = "txtBoxPrice";
             txtBoxPrice.Size = new Size(176, 23);
             txtBoxPrice.TabIndex = 1;
-            txtBoxPrice.TextChanged += txtBoxPrice_TextChanged;
             // 
             // txtBoxCountry
             // 
@@ -376,31 +396,35 @@ namespace collectionofstamp
             // 
             // countryCollectorColumn
             // 
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            countryCollectorColumn.DefaultCellStyle = dataGridViewCellStyle7;
             countryCollectorColumn.HeaderText = "Країна";
             countryCollectorColumn.Name = "countryCollectorColumn";
             countryCollectorColumn.ReadOnly = true;
-            countryCollectorColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             // 
             // nameCollectorColumn
             // 
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            nameCollectorColumn.DefaultCellStyle = dataGridViewCellStyle8;
             nameCollectorColumn.HeaderText = "Ім'я";
             nameCollectorColumn.Name = "nameCollectorColumn";
             nameCollectorColumn.ReadOnly = true;
-            nameCollectorColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 
             // contactCollectorColumn
             // 
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            contactCollectorColumn.DefaultCellStyle = dataGridViewCellStyle9;
             contactCollectorColumn.HeaderText = "Контактні дані";
             contactCollectorColumn.Name = "contactCollectorColumn";
             contactCollectorColumn.ReadOnly = true;
-            contactCollectorColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 
             // rareStampsCollectorColumn
             // 
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            rareStampsCollectorColumn.DefaultCellStyle = dataGridViewCellStyle10;
             rareStampsCollectorColumn.HeaderText = "Рідкісні марки";
             rareStampsCollectorColumn.Name = "rareStampsCollectorColumn";
             rareStampsCollectorColumn.ReadOnly = true;
-            rareStampsCollectorColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 
             // panel2
             // 
@@ -455,9 +479,9 @@ namespace collectionofstamp
             labelRareCollectors.AutoSize = true;
             labelRareCollectors.Location = new Point(3, 145);
             labelRareCollectors.Name = "labelRareCollectors";
-            labelRareCollectors.Size = new Size(86, 15);
+            labelRareCollectors.Size = new Size(142, 15);
             labelRareCollectors.TabIndex = 11;
-            labelRareCollectors.Text = "Рідкісні марки";
+            labelRareCollectors.Text = "Рідкісні марки (Необов.)";
             // 
             // labelDataCollectors
             // 
@@ -475,7 +499,7 @@ namespace collectionofstamp
             buttonSearchCollectors.Name = "buttonSearchCollectors";
             buttonSearchCollectors.Size = new Size(176, 35);
             buttonSearchCollectors.TabIndex = 6;
-            buttonSearchCollectors.Text = "Пошук";
+            buttonSearchCollectors.Text = "Пошук (Очистити)";
             buttonSearchCollectors.UseVisualStyleBackColor = false;
             buttonSearchCollectors.Click += buttonSearchCollectors_Click;
             // 
@@ -547,45 +571,49 @@ namespace collectionofstamp
             // 
             // nameMyColumn
             // 
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            nameMyColumn.DefaultCellStyle = dataGridViewCellStyle11;
             nameMyColumn.HeaderText = "Назва";
             nameMyColumn.Name = "nameMyColumn";
             nameMyColumn.ReadOnly = true;
-            nameMyColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 
             // countryMyColumn
             // 
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            countryMyColumn.DefaultCellStyle = dataGridViewCellStyle12;
             countryMyColumn.HeaderText = "Країна";
             countryMyColumn.Name = "countryMyColumn";
             countryMyColumn.ReadOnly = true;
-            countryMyColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             // 
             // priceMyColumn
             // 
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
+            priceMyColumn.DefaultCellStyle = dataGridViewCellStyle13;
             priceMyColumn.HeaderText = "Номінальна вартість";
             priceMyColumn.Name = "priceMyColumn";
             priceMyColumn.ReadOnly = true;
-            priceMyColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             // 
             // yearMyColumn
             // 
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            yearMyColumn.DefaultCellStyle = dataGridViewCellStyle14;
             yearMyColumn.HeaderText = "Рік випуску";
             yearMyColumn.Name = "yearMyColumn";
             yearMyColumn.ReadOnly = true;
-            yearMyColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             // 
             // circulationMyColumn
             // 
             circulationMyColumn.HeaderText = "Тираж";
             circulationMyColumn.Name = "circulationMyColumn";
             circulationMyColumn.ReadOnly = true;
-            countryMyColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             // 
             // featuresMyColumn
             // 
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            featuresMyColumn.DefaultCellStyle = dataGridViewCellStyle15;
             featuresMyColumn.HeaderText = "Особливості";
             featuresMyColumn.Name = "featuresMyColumn";
             featuresMyColumn.ReadOnly = true;
-            featuresMyColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 
             // panel1
             // 
@@ -641,9 +669,9 @@ namespace collectionofstamp
             labelFeaturesMy.AutoSize = true;
             labelFeaturesMy.Location = new Point(3, 234);
             labelFeaturesMy.Name = "labelFeaturesMy";
-            labelFeaturesMy.Size = new Size(77, 15);
+            labelFeaturesMy.Size = new Size(170, 15);
             labelFeaturesMy.TabIndex = 12;
-            labelFeaturesMy.Text = "Особливості";
+            labelFeaturesMy.Text = "Особливості (Необов'язково)";
             // 
             // labelCirculationMy
             // 
@@ -688,7 +716,7 @@ namespace collectionofstamp
             buttonSearchMy.Name = "buttonSearchMy";
             buttonSearchMy.Size = new Size(176, 35);
             buttonSearchMy.TabIndex = 6;
-            buttonSearchMy.Text = "Пошук";
+            buttonSearchMy.Text = "Пошук (Очистити)";
             buttonSearchMy.UseVisualStyleBackColor = false;
             buttonSearchMy.Click += buttonSearchMy_Click;
             // 

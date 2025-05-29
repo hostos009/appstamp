@@ -159,10 +159,5 @@ namespace collectionofstamp
                 txtBoxFeaturesMy.Text = selectedRow.Cells["featuresMyColumn"].Value?.ToString();
             }
         }
-
-        private void txtBoxPrice_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
